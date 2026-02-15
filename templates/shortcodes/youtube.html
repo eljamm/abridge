@@ -1,6 +1,9 @@
 <div class="yv{% if class %} {{class}}{% endif %}" data-video-id="{{id}}" data-autoplay="{% if autoplay %}1{% else %}0{% endif %}">
     <div class="yv-thumb" tabindex="0" role="button" aria-label="Play YouTube video">
         <img src="https://img.youtube.com/vi/{{id}}/maxresdefault.jpg" alt="{{title | default(value='YouTube video') }}" loading="lazy">
+        {%- if title -%}
+        <div class="yv-title">{{ title }}</div>
+        {%- endif -%}
         <div class="yv-play">
             <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
         </div>
