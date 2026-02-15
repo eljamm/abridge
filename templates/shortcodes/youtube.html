@@ -1,14 +1,32 @@
-<div class="yv{% if class %} {{class}}{% endif %}" data-video-id="{{id}}" data-autoplay="{% if autoplay %}1{% else %}0{% endif %}">
+<div class="yv{% if class %} {{class}}{% endif %}"
+     data-video-id="{{id}}"
+     data-playlist="{{ playlist | default(value='') }}"
+     data-autoplay="{% if autoplay %}1{% else %}0{% endif %}">
+
     <div class="yv-thumb" tabindex="0" role="button" aria-label="Play YouTube video">
-        <img src="https://img.youtube.com/vi/{{id}}/maxresdefault.jpg" alt="{{title | default(value='YouTube video') }}" loading="lazy">
+        <img src="https://img.youtube.com/vi/{{id}}/maxresdefault.jpg"
+             alt="{{ title | default(value='YouTube video') }}"
+             loading="lazy">
+
         {%- if title -%}
         <div class="yv-title">{{ title }}</div>
         {%- endif -%}
+
         <div class="yv-play">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M8 5v14l11-7z"/>
+            </svg>
         </div>
     </div>
+
     <div class="yv-embed">
-        <noscript><iframe src="https://www.youtube{% if not cookie %}-nocookie{% endif %}.com/embed/{{id}}{% if playlist %}?list={{playlist}}{% endif %}{% if autoplay %}?autoplay=1{% endif %}" title="{{title | default(value='Youtube') }}" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></noscript>
+        <noscript>
+            <iframe
+                src="https://www.youtube{% if not cookie %}-nocookie{% endif %}.com/embed/{{id}}?{% if playlist %}list={{playlist}}&{% endif %}autoplay={% if autoplay %}1{% else %}0{% endif %}"
+                title="{{ title | default(value='Youtube') }}"
+                class="yvi"
+                allowfullscreen>
+            </iframe>
+        </noscript>
     </div>
 </div>
