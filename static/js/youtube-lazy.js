@@ -13,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const container = trigger.closest(".yv");
     const videoId = container.dataset.videoId;
+    const playlistId = container.dataset.playlist;
+    const autoplayVal = container.dataset.autoplay;
     const embedContainer = container.querySelector(".yv-embed");
 
     const iframe = document.createElement("iframe");
-
     iframe.setAttribute("class", "yvi");
     iframe.setAttribute("frameborder", "0");
     iframe.setAttribute("allowfullscreen", "1");
@@ -25,12 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     );
 
-    // NOTE: playsinline is to prevent auto-fullscreen on mobile
-    const iframeSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1`;
+    const params = new URLSearchParams({
+      autoplay: autoplayVal,
+      playsinline: "1", // prevent auto-fullscreen on mobile
+    });
 
-    iframe.src = iframeSrc;
+    if (playlistId) {
+      params.set("list", playlistId);
+    }
 
-    // inject
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
+
     embedContainer.textContent = "";
     embedContainer.appendChild(iframe);
 
