@@ -1,7 +1,7 @@
 <div class="yv{% if class %} {{class}}{% endif %}"
      data-video-id="{{id}}"
      data-playlist="{{ playlist | default(value='') }}"
-     data-autoplay="{% if autoplay %}1{% else %}0{% endif %}">
+     data-autoplay="{% if autoplay %}0{% else %}1{% endif %}">
 
     <div class="yv-thumb" tabindex="0" role="button" aria-label="Play YouTube video">
         <img src="https://img.youtube.com/vi/{{id}}/maxresdefault.jpg"
