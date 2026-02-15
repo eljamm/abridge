@@ -831,6 +831,47 @@ $coderoundhighlight: false !default;//round corners on highlighted code blocks
     height: 0;
     overflow: hidden;
   }
+  .yv-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: #000;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .yv-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 48px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+  }
+  .yv-thumb:hover .yv-play,
+  .yv-thumb:focus .yv-play {
+    background: #f00;
+  }
+  .yv-thumb:focus {
+    outline: 2px solid #f00;
+    outline-offset: -2px;
+  }
   img,
   video,
   svg {
